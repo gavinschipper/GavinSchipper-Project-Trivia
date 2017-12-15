@@ -13,16 +13,15 @@ class ResultsViewController: UIViewController {
     
     @IBOutlet weak var showScoreLabel: UILabel!
     
-//    @IBAction func viewScoresButtonPressed(_ sender: Any) {
-//        let vc = self.tabBarController
-//        self.present(vc!, animated: true, completion: nil)
-//    }
-    
+    // referentie naar de firebase database
     var ref: DatabaseReference! = Database.database().reference().child("scores")
+    
+    // laad huidige gebruiker
     var user = Auth.auth().currentUser!
     
     var score = 0
 
+    // laad de score zien die tijdens de quiz behaald is en voeg de score toe aan de database
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.hidesBackButton = true
@@ -30,11 +29,12 @@ class ResultsViewController: UIViewController {
         addScore()
     }
     
+    // functie die een score toevoegt aan de firebase database
     func addScore () {
         //Een key aanmaken voor de score
         let key = ref.childByAutoId().key
             
-        //score creë met verschillende waardes
+        //score creëren met verschillende waardes
         let score: [String: Any] = ["id":key,
                                     "email": user.email!,
                                     "score": self.score
@@ -47,18 +47,6 @@ class ResultsViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

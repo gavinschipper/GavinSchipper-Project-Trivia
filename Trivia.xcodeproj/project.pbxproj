@@ -10,6 +10,7 @@
 		4B014189B4ECE3AD7108F9EE /* Pods_Trivia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F239CAFB3BD0AA7E0AD50CF /* Pods_Trivia.framework */; };
 		DC1B16291FDEB557005A16C9 /* QuizController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1B16281FDEB557005A16C9 /* QuizController.swift */; };
 		DC3D0BD01FDEBA9C008D653E /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3D0BCF1FDEBA9C008D653E /* QuizViewController.swift */; };
+		DC6EE6061FE432BF00F07B9F /* doc in Resources */ = {isa = PBXBuildFile; fileRef = DC6EE6051FE432BF00F07B9F /* doc */; };
 		DC6EFEBB1FDE77F0000D168B /* TriviaQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6EFEBA1FDE77F0000D168B /* TriviaQuestion.swift */; };
 		DCA181A31FE32CE70060893A /* HighscoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA181A21FE32CE70060893A /* HighscoreTableViewController.swift */; };
 		DCA181A51FE32F860060893A /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA181A41FE32F860060893A /* Score.swift */; };
@@ -32,6 +33,7 @@
 		7AC823C51EFA56B03F32FCCB /* Pods-Trivia.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trivia.release.xcconfig"; path = "Pods/Target Support Files/Pods-Trivia/Pods-Trivia.release.xcconfig"; sourceTree = "<group>"; };
 		DC1B16281FDEB557005A16C9 /* QuizController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizController.swift; sourceTree = "<group>"; };
 		DC3D0BCF1FDEBA9C008D653E /* QuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
+		DC6EE6051FE432BF00F07B9F /* doc */ = {isa = PBXFileReference; lastKnownFileType = folder; name = doc; path = ../doc; sourceTree = "<group>"; };
 		DC6EFEBA1FDE77F0000D168B /* TriviaQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriviaQuestion.swift; sourceTree = "<group>"; };
 		DCA181A21FE32CE70060893A /* HighscoreTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighscoreTableViewController.swift; sourceTree = "<group>"; };
 		DCA181A41FE32F860060893A /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				DCC0C8761FD9579200562DE6 /* Trivia */,
+				DC6EE6051FE432BF00F07B9F /* doc */,
 				DCC0C8751FD9579200562DE6 /* Products */,
 				223AA429911239E27C139099 /* Pods */,
 				3E27F206499D5D994C2BCE12 /* Frameworks */,
@@ -214,6 +217,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC6EE6061FE432BF00F07B9F /* doc in Resources */,
 				DCC0C8821FD9579200562DE6 /* LaunchScreen.storyboard in Resources */,
 				DCC0C88C1FDDB14300562DE6 /* GoogleService-Info.plist in Resources */,
 				DCC0C87F1FD9579200562DE6 /* Assets.xcassets in Resources */,

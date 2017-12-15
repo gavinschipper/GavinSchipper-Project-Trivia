@@ -20,6 +20,7 @@ class QuizController {
         "type": "multiple",
         ]
     
+    // Verzamelt de data voor de quiz van de API
     func fetchTriviaQuestions(completion: @escaping (triviaQuestions?) -> Void) {
         let url = baseURL.withQueries(query)!
         let task = URLSession.shared.dataTask(with: url) { (data,

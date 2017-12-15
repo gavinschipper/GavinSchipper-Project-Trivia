@@ -14,7 +14,18 @@ class AccountViewController: UIViewController {
     @IBOutlet weak var logOutButton: UIBarButtonItem!
     @IBOutlet weak var showEmailLabel: UILabel!
     
+    // Laad de currentUser en verander het emailLabel naar de email van de gebruiker
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let user = Auth.auth().currentUser
+        let email = user?.email
+        
+        showEmailLabel.text = email
+    }
+    
+    // Log de gebruiker uit wanneer er op de log out button geklikt wordt.
     @IBAction func logOutButtonPressed(_ sender: Any) {
+        
         if Auth.auth().currentUser != nil {
             do {
                 try Auth.auth().signOut()
@@ -26,31 +37,9 @@ class AccountViewController: UIViewController {
             }
         }
     }
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        let user = Auth.auth().currentUser
-        let email = user?.email
-        
-        showEmailLabel.text = email
-
-    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

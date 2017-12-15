@@ -12,10 +12,12 @@ class StartQuizViewController: UIViewController {
     
     var questions = [triviaQuestion]()
     
+    // Unwind segue om naar de StartQuizViewController te gaan vanaf een andere pagina
     @IBAction func unwindToStartQuiz(segue: UIStoryboardSegue) {
         
     }
-
+    
+    // Laad de vragen voor de quiz
     override func viewDidLoad() {
         super.viewDidLoad()
         QuizController.shared.fetchTriviaQuestions { (triviaQuestions) in
@@ -28,28 +30,16 @@ class StartQuizViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
+    // Stuur de geladen vragen door naar QuizViewController wanneer er op 'Start Quiz' gedrukt wordt.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "StartQuizSegue" {
-            //let quizViewController = segue.destination as! QuizViewController
-            //quizViewController.questions = self.questions
             
             let nav = segue.destination as! UINavigationController
             let svc = nav.topViewController as! QuizViewController
             svc.questions = self.questions
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

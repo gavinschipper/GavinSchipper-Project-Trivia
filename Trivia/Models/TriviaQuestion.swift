@@ -16,6 +16,8 @@ struct triviaQuestion: Codable {
     var question: String
     var correctAnswer: String
     var incorrectAnswers: [String]
+    
+    // correctAnswer en incorrectAnswers samenvoegen tot 1 lijst
     var answers: [String] {
         var answers = incorrectAnswers
         answers.append(correctAnswer)
@@ -31,10 +33,6 @@ struct triviaQuestion: Codable {
         case correctAnswer = "correct_answer"
         case incorrectAnswers = "incorrect_answers"
     }
-}
-
-struct Answer {
-    var text: String
 }
 
 struct triviaQuestions: Codable {

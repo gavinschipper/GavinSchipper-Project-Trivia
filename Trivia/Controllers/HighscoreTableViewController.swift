@@ -13,9 +13,12 @@ class HighscoreTableViewController: UITableViewController {
     
     var scoreList = [Score]()
 
+    // Na het laden van de view controller wordt de data die is opgeslagen in de firebase database opgehaald. Deze data wordt in variabelen opgeslagen en in een Score struct opgeslagen. Nadat alle scores in een lijst zijn opgeslagen wordt de lijst gesorteerd van hoog naar laag.
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.hidesBackButton = true
+        
+        // https://www.simplifiedios.net/firebase-realtime-database-tutorial/
         
         let ref: DatabaseReference! = Database.database().reference().child("scores")
         
@@ -42,16 +45,17 @@ class HighscoreTableViewController: UITableViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Table view data source
 
+    
+    // Voor iedere score wordt een regel geplaatst
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return scoreList.count
     }
 
-    
+    // de cellen worden gevuld met de scores en de bijbehorende user email.
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "highscoreCell", for: indexPath) as! TableViewCell
         
@@ -64,51 +68,4 @@ class HighscoreTableViewController: UITableViewController {
 
         return cell
     }
- 
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

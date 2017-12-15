@@ -27,50 +27,13 @@ class QuizViewController: UIViewController {
     
     var score = 0
     var questionIndex = 0
-    var answersChosen: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.updateUI(with: self.questions)
-//        QuizController.shared.fetchTriviaQuestions { (triviaQuestions) in
-//            if let triviaQuestions = triviaQuestions {
-//                self.updateUI(with: triviaQuestions.results)
-//            }
-//        }
     }
     
-    @IBAction func singleAnswerButtonPressed(_ sender: UIButton) {
-        let currentQuestion = questions[questionIndex]
-        var currentAnswers = currentQuestion.answers.sorted()
-        
-        switch sender {
-        case singleButton1:
-            answersChosen.append(currentAnswers[0])
-            if currentAnswers[0] == currentQuestion.correctAnswer {
-                score += 1
-            }
-        case singleButton2:
-            answersChosen.append(currentAnswers[1])
-            if currentAnswers[1] == currentQuestion.correctAnswer {
-                score += 1
-            }
-        case singleButton3:
-            answersChosen.append(currentAnswers[2])
-            if currentAnswers[2] == currentQuestion.correctAnswer {
-                score += 1
-            }
-        case singleButton4:
-            answersChosen.append(currentAnswers[3])
-            if currentAnswers[3] == currentQuestion.correctAnswer {
-                score += 1
-            }
-        default:
-            break
-        }
-        
-        nextQuestion()
-    }
-    
+    // Update voor iedere nieuwe vraag de UI
     func updateUI(with questions: [triviaQuestion]) {
         singleAnswerStackView.isHidden = true
         
@@ -78,20 +41,48 @@ class QuizViewController: UIViewController {
         let currentQuestion = questions[questionIndex]
         let antwoorden = currentQuestion.answers.sorted()
         
-        print(antwoorden)
-        
         let totalProgress = Float(questionIndex) / Float(questions.count)
         
         navigationItem.title = "Question #\(questionIndex+1)"
-        questionLabel.text = currentQuestion.question.removingHTMLEntities
-        updateStackView(using: antwoorden)
-        currentScoreLabel.text = "Current score: \(score)"
-        questionProgressView.setProgress(totalProgress, animated: true)
         
-        print(answersChosen)
-        print(score)
+        questionLabel.text = currentQuestion.question.removingHTMLEntities
+        
+        updateStackView(using: antwoorden)
+        
+        currentScoreLabel.text = "Current score: \(score)"
+        
+        questionProgressView.setProgress(totalProgress, animated: true)
     }
     
+    // Wanneer één van de singleAnswerButtons wordt geklikt, wordt gekeken of het bijbehorende antwoord overeenkomt met de correctAnswer. Als dit het geval is wordt de score met 1 verhoogd. Vervolgens wordt de volgende vraag aangeroepen.
+    @IBAction func singleAnswerButtonPressed(_ sender: UIButton) {
+        let currentQuestion = questions[questionIndex]
+        var currentAnswers = currentQuestion.answers.sorted()
+        
+        switch sender {
+        case singleButton1:
+            if currentAnswers[0] == currentQuestion.correctAnswer {
+                score += 1
+            }
+        case singleButton2:
+            if currentAnswers[1] == currentQuestion.correctAnswer {
+                score += 1
+            }
+        case singleButton3:
+            if currentAnswers[2] == currentQuestion.correctAnswer {
+                score += 1
+            }
+        case singleButton4:
+            if currentAnswers[3] == currentQuestion.correctAnswer {
+                score += 1
+            }
+        default:
+            break
+        }
+        nextQuestion()
+    }
+    
+    // checkt of de huidige index lager is dan het totale aantal vragen. Als dit zo is wordt de volgende vraag aangeroepen. Als dit niet zo is wordt de gebruiker doorgestuurd naar de ResultsViewController
     func nextQuestion() {
         questionIndex += 1
         
@@ -102,6 +93,7 @@ class QuizViewController: UIViewController {
         }
     }
     
+    // de tekst van de antwoordbuttons wordt aangepast aan de antwoorden van de huidige vraag
     func updateStackView(using antwoorden: [String]) {
         singleAnswerStackView.isHidden = false
         singleButton1.setTitle(antwoorden[0].removingHTMLEntities, for: .normal)
@@ -111,27 +103,15 @@ class QuizViewController: UIViewController {
     }
     
     override func didReceiveMemoryWarning() {
-        
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
+    // Stuurt de score die behaald is na het beantwoorden van alle vragen door naar de results pagina
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ResultsSegue" {
             let resultsViewController = segue.destination as! ResultsViewController
             resultsViewController.score = score
         }
     }
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }
